@@ -8,7 +8,9 @@
 
 //MARK: UI Strings
 "HOME_SCREEN_TITLE" = "Movie Time";
+"DATA_REFRESH" = "Reloading data...";
 
 //MARK: Network Strings
 "BASE_URL_ERROR" = "baseURL could not be configured.";
 "CONNECTION_ERROR" = "Please check your network connection.";
+"DOWNLOAD_ERROR" = "Unable to download data at this time. Please try again later.";

@@ -6,7 +6,7 @@ target 'MovieApp' do
   use_frameworks!
 
   # Pods for MovieApp
-  pod 'Alamofire', '~> 4.4’
+  pod 'SDWebImage', '~> 4.0'
 
   target 'MovieAppTests' do
     inherit! :search_paths

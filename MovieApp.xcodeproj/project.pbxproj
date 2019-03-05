@@ -20,6 +20,8 @@
 		B53F8C69222E39C40055BDEE /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53F8C68222E39C40055BDEE /* JSONParameterEncoder.swift */; };
 		B53F8C6B222E3A310055BDEE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53F8C6A222E3A310055BDEE /* NetworkManager.swift */; };
 		B53F8C6D222E3A910055BDEE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53F8C6C222E3A910055BDEE /* Movie.swift */; };
+		B53F8C6F222E5BA60055BDEE /* MAMovieColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53F8C6E222E5BA60055BDEE /* MAMovieColumnFlowLayout.swift */; };
+		B53F8C71222E5F4A0055BDEE /* MAMovieCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53F8C70222E5F4A0055BDEE /* MAMovieCollectionCell.swift */; };
 		B5992D41222D4D98003F8534 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5992D40222D4D98003F8534 /* AppDelegate.swift */; };
 		B5992D46222D4D98003F8534 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5992D44222D4D98003F8534 /* Main.storyboard */; };
 		B5992D48222D4D9A003F8534 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5992D47222D4D9A003F8534 /* Assets.xcassets */; };
@@ -29,6 +31,7 @@
 		B5992D6B222D5FD9003F8534 /* MAAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5992D6A222D5FD9003F8534 /* MAAppConstants.swift */; };
 		B5992D6E222D60C7003F8534 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5992D70222D60C7003F8534 /* InfoPlist.strings */; };
 		B5992D74222D6594003F8534 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5992D76222D6594003F8534 /* Localizable.strings */; };
+		B5E26A84222EC549001A1616 /* UIStoryboard+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E26A83222EC549001A1616 /* UIStoryboard+Loader.swift */; };
 		B5F7437C222D6EBA0074BC21 /* MAMovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */; };
 		B5F7437F222D6F9F0074BC21 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */; };
 		B5F74381222D70E70074BC21 /* MAMovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F74380222D70E70074BC21 /* MAMovieDetailsViewController.swift */; };
@@ -61,6 +64,8 @@
 		B53F8C68222E39C40055BDEE /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
 		B53F8C6A222E3A310055BDEE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B53F8C6C222E3A910055BDEE /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		B53F8C6E222E5BA60055BDEE /* MAMovieColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAMovieColumnFlowLayout.swift; sourceTree = "<group>"; };
+		B53F8C70222E5F4A0055BDEE /* MAMovieCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAMovieCollectionCell.swift; sourceTree = "<group>"; };
 		B5992D3D222D4D98003F8534 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5992D40222D4D98003F8534 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5992D45222D4D98003F8534 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 		B5992D6A222D5FD9003F8534 /* MAAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAAppConstants.swift; sourceTree = "<group>"; };
 		B5992D6F222D60C7003F8534 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5992D75222D6594003F8534 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5E26A83222EC549001A1616 /* UIStoryboard+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Loader.swift"; sourceTree = "<group>"; };
 		B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAMovieListViewController.swift; sourceTree = "<group>"; };
 		B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		B5F74380222D70E70074BC21 /* MAMovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAMovieDetailsViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */,
+				B53F8C6E222E5BA60055BDEE /* MAMovieColumnFlowLayout.swift */,
+				B53F8C70222E5F4A0055BDEE /* MAMovieCollectionCell.swift */,
 			);
 			path = MoviesList;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */,
+				B5E26A83222EC549001A1616 /* UIStoryboard+Loader.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,13 +428,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -476,6 +485,9 @@
 				B5992D41222D4D98003F8534 /* AppDelegate.swift in Sources */,
 				B5F7437C222D6EBA0074BC21 /* MAMovieListViewController.swift in Sources */,
 				B5F74381222D70E70074BC21 /* MAMovieDetailsViewController.swift in Sources */,
+				B5E26A84222EC549001A1616 /* UIStoryboard+Loader.swift in Sources */,
+				B53F8C6F222E5BA60055BDEE /* MAMovieColumnFlowLayout.swift in Sources */,
+				B53F8C71222E5F4A0055BDEE /* MAMovieCollectionCell.swift in Sources */,
 				B5992D6B222D5FD9003F8534 /* MAAppConstants.swift in Sources */,
 				B5F74384222D77340074BC21 /* MAAppUtils.swift in Sources */,
 				B53F8C59222E38310055BDEE /* MAMovieEndPoint.swift in Sources */,
@@ -662,7 +674,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P62HWD5GUW;
 				INFOPLIST_FILE = MovieApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -682,7 +694,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P62HWD5GUW;
 				INFOPLIST_FILE = MovieApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
