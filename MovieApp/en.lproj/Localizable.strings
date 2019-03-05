@@ -6,4 +6,9 @@
   Copyright © 2019 Mindtree. All rights reserved.
 */
 
+//MARK: UI Strings
 "HOME_SCREEN_TITLE" = "Movie Time";
+
+//MARK: Network Strings
+"BASE_URL_ERROR" = "baseURL could not be configured.";
+"CONNECTION_ERROR" = "Please check your network connection.";

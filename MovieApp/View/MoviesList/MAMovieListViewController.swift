@@ -16,6 +16,11 @@ class MAMovieListViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         setupUI()
+        
+        let networkManager = NetworkManager()
+        networkManager.getNewMovies(page: 1) { movies, error in
+            
+        }
     }
     
     //MARK: UI

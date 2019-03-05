@@ -8,5 +8,9 @@
 
 import Foundation
 
+//MARK: UI Constants
 let kHomeScreenTitle = NSLocalizedString("HOME_SCREEN_TITLE", comment: "")
 
+//MARK: Network Constants
+let kBaseUrlError = NSLocalizedString("BASE_URL_ERROR", comment: "")
+let kConnectionError = NSLocalizedString("CONNECTION_ERROR", comment: "")
