@@ -14,6 +14,7 @@ class MAMovieDetailsViewController: UIViewController {
     fileprivate let parallaxImageHeight: CGFloat = 200.0
     fileprivate let parallaxImageStrechableHeight: CGFloat = 300.0
     fileprivate let similarMovieRowHeight: CGFloat = 140.0
+    fileprivate let sectionHeaderHeight: CGFloat = 30.0
     fileprivate let sectionCount = 2
     fileprivate let rowCountInSection = 1
 
@@ -89,6 +90,27 @@ extension MAMovieDetailsViewController: UITableViewDelegate {
             return similarMovieRowHeight
         }
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return sectionHeaderHeight
+        }
+        return 1.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: self.view.frame.size.width, height: 20))
+            headerLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
+            headerLabel.text = kSimilarMovieHeaderString
+            
+            let headerView = UILabel()
+            headerView.addSubview(headerLabel)
+            
+            return headerView
+        }
+        return nil
     }
 }
 

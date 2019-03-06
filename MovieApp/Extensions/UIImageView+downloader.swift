@@ -21,7 +21,7 @@ extension UIImageView {
             DispatchQueue.main.async() {
                 self.image = image
             }
-            }.resume()
+        }.resume()
     }
     
     func download(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFill) {

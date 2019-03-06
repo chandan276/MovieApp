@@ -95,11 +95,11 @@ class MAMovieListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.stopRefresher()
                 
-//                if movies != nil {
-//                    self.handleUIForData()
-//                } else {
-//                    self.handleError(error ?? kDownloadError)
-//                }
+               if movies != nil {
+                   self.handleUIForData()
+               } else {
+                   self.handleError(error ?? kDownloadError)
+               }
             }
         }
     }

@@ -9,6 +9,7 @@
 //MARK: UI Strings
 "HOME_SCREEN_TITLE" = "Movie Time";
 "DATA_REFRESH" = "Reloading data...";
+"SIMILAR_MOVIE" = "Similar Movies";
 
 //MARK: Network Strings
 "BASE_URL_ERROR" = "baseURL could not be configured.";
