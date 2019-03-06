@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct CellConstants {
+    static let movieDetailCellAndIdentifier = "MAMovieDetailCell"
+    static let similarMovieCellAndIdentifier = "MASimilarMovieCell"
+    static let similarMovieCollectionCellAndIdentifier = "MASimilarMovieCollectionCell"
+}

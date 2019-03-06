@@ -15,9 +15,9 @@ class MAMovieListViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
-    var refresher: UIRefreshControl!
-    var currentPage: Int = 1
-    let networkManager = NetworkManager()
+    fileprivate var refresher: UIRefreshControl!
+    fileprivate var currentPage: Int = 1
+    fileprivate let networkManager = NetworkManager()
     
     let columnLayout = MAMovieColumnFlowLayout(
         cellsPerRow: 2,
@@ -35,6 +35,12 @@ class MAMovieListViewController: UIViewController {
         getDataFromServer(currentPage)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     //MARK: UI
     private func setupUI() -> Void {
         //Add Page title
@@ -48,7 +54,7 @@ class MAMovieListViewController: UIViewController {
         self.refresher = UIRefreshControl()
         self.refresher.attributedTitle = NSAttributedString(string: kDataReloadString)
         self.movieListCollectionView.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.blue
+        self.refresher.tintColor = UIColor.refresherSpinnerColor
         self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
         self.movieListCollectionView.addSubview(refresher)
     }
@@ -89,11 +95,11 @@ class MAMovieListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.stopRefresher()
                 
-                /*if movies != nil {
-                    self.handleUIForData()
-                } else {
-                    self.handleError(error ?? kDownloadError)
-                }*/
+//                if movies != nil {
+//                    self.handleUIForData()
+//                } else {
+//                    self.handleError(error ?? kDownloadError)
+//                }
             }
         }
     }
@@ -108,8 +114,7 @@ extension MAMovieListViewController: UICollectionViewDataSource {
         let cell: MAMovieCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! MAMovieCollectionCell
         
         cell.photoImageView.backgroundColor = UIColor.orange
-        cell.photoImageView.sd_setShowActivityIndicatorView(true)
-        cell.photoImageView.sd_setIndicatorStyle(.gray)
+        //cell.photoImageView.download(from: "")
         
         return cell
     }

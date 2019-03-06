@@ -41,6 +41,8 @@ struct Movie {
     let releaseDate: String
     let rating: Double
     let overview: String
+    let voteCount: Int
+    let isAdult: Bool
 }
 
 extension Movie: Decodable {
@@ -52,6 +54,8 @@ extension Movie: Decodable {
         case releaseDate = "release_date"
         case rating = "vote_average"
         case overview
+        case voteCount = "vote_count"
+        case isAdult = "adult"
     }
     
     
@@ -64,5 +68,7 @@ extension Movie: Decodable {
         releaseDate = try movieContainer.decode(String.self, forKey: .releaseDate)
         rating = try movieContainer.decode(Double.self, forKey: .rating)
         overview = try movieContainer.decode(String.self, forKey: .overview)
+        voteCount = try movieContainer.decode(Int.self, forKey: .voteCount)
+        isAdult = try movieContainer.decode(Bool.self, forKey: .isAdult)
     }
 }

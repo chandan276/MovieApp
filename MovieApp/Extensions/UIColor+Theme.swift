@@ -21,6 +21,6 @@ extension UIColor {
     
     // MARK: Public
     static let borderColor = rgb(254, 250, 236)
-    static let backgroundColor = rgb(67, 73, 110)
     static let textColor = UIColor.black
+    static let refresherSpinnerColor = UIColor.black
 }
