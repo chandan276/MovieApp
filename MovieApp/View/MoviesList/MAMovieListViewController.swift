@@ -22,7 +22,7 @@ class MAMovieListViewController: UIViewController {
     fileprivate var movieData: [Movie] = [Movie]()
     fileprivate var isWating: Bool = false
     
-    let columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
+    var columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
     
     //MARK: LifeCycle
     override func viewDidLoad() {
@@ -39,6 +39,25 @@ class MAMovieListViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.movieListCollectionView.collectionViewLayout.prepare()
+        self.movieListCollectionView.collectionViewLayout.invalidateLayout()
+//        self.movieListCollectionView.setNeedsLayout()
+//        self.movieListCollectionView.setNeedsDisplay()
+        self.view.setNeedsDisplay()
+    }
+    
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        var numberOfColumns = 2
+        if toInterfaceOrientation == .landscapeLeft || toInterfaceOrientation == .landscapeRight {
+            numberOfColumns = 3
+        }
+        columnLayout = MAMovieColumnFlowLayout(cellsPerRow: numberOfColumns)
+        
+    }
+        
     //MARK: UI
     private func setupUI() -> Void {
         //Add Page title
