@@ -22,12 +22,7 @@ class MAMovieListViewController: UIViewController {
     fileprivate var movieData: [Movie] = [Movie]()
     fileprivate var isWating: Bool = false
     
-    let columnLayout = MAMovieColumnFlowLayout(
-        cellsPerRow: 2,
-        minimumInteritemSpacing: 10,
-        minimumLineSpacing: 10,
-        sectionInset: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    )
+    let columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
     
     //MARK: LifeCycle
     override func viewDidLoad() {

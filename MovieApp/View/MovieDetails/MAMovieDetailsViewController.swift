@@ -93,19 +93,23 @@ extension MAMovieDetailsViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            cell.movieNameLabel.text = movieData?.title
+            guard let movie = movieData else {
+                return UITableViewCell()
+            }
+            
+            cell.movieNameLabel.text = movie.title
             
             var adultStr = kNonAdultSign
-            if (movieData?.isAdult)! {
+            if (movie.isAdult) {
                 adultStr = kAdultSign
             }
-            let formattedReleseString = String(format: "%@ | %@", adultStr, movieData?.releaseDate ?? kDataUnavailable)
+            let formattedReleseString = String(format: "%@ | %@", adultStr, movie.releaseDate)
             cell.movieReleaseLabel.text = formattedReleseString
             
-            let formattedVotesString = String(format: "%d %@", movieData?.voteCount ?? 0, kVotesString)
+            let formattedVotesString = String(format: "%d %@", movie.voteCount, kVotesString)
             cell.movieVotesLabel.text = formattedVotesString
             
-            cell.movieOverviewLabel.text = movieData?.overview
+            cell.movieOverviewLabel.text = movie.overview
             
             return cell
             

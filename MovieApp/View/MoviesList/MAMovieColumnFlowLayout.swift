@@ -14,13 +14,13 @@ class MAMovieColumnFlowLayout: UICollectionViewFlowLayout {
     
     fileprivate let imageHeight: CGFloat = 250.0
     
-    init(cellsPerRow: Int, minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0, sectionInset: UIEdgeInsets = .zero) {
+    init(cellsPerRow: Int, minimumInteritemSpacing: CGFloat = 10, minimumLineSpacing: CGFloat = 10, sectionInset: UIEdgeInsets = .zero) {
         self.cellsPerRow = cellsPerRow
         super.init()
         
         self.minimumInteritemSpacing = minimumInteritemSpacing
         self.minimumLineSpacing = minimumLineSpacing
-        self.sectionInset = sectionInset
+        self.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
     required init?(coder aDecoder: NSCoder) {

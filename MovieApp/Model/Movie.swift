@@ -64,10 +64,10 @@ extension Movie: Decodable {
         
         id = try movieContainer.decode(Int.self, forKey: .id)
         posterPath = try movieContainer.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
-        title = try movieContainer.decode(String.self, forKey: .title)
-        releaseDate = try movieContainer.decode(String.self, forKey: .releaseDate)
+        title = try movieContainer.decodeIfPresent(String.self, forKey: .title) ?? kDataUnavailable
+        releaseDate = try movieContainer.decodeIfPresent(String.self, forKey: .releaseDate) ?? kDataUnavailable
         rating = try movieContainer.decode(Double.self, forKey: .rating)
-        overview = try movieContainer.decode(String.self, forKey: .overview)
+        overview = try movieContainer.decodeIfPresent(String.self, forKey: .overview) ?? kDataUnavailable
         voteCount = try movieContainer.decode(Int.self, forKey: .voteCount)
         isAdult = try movieContainer.decode(Bool.self, forKey: .isAdult)
     }
