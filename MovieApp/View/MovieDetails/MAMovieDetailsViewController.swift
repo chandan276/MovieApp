@@ -10,10 +10,11 @@ import UIKit
 
 class MAMovieDetailsViewController: UIViewController {
     
-    fileprivate let tableViewEstimatedRowHeight: CGFloat = 200.0
+    fileprivate let tableViewEstimatedRowHeight: CGFloat = 50.0
     fileprivate let parallaxImageHeight: CGFloat = 200.0
     fileprivate let parallaxImageStrechableHeight: CGFloat = 300.0
     fileprivate let similarMovieRowHeight: CGFloat = 140.0
+    fileprivate let tableTopContentInset: CGFloat = 150.0
     fileprivate let sectionHeaderHeight: CGFloat = 30.0
     fileprivate let sectionCount = 2
     fileprivate let rowCountInSection = 1
@@ -43,7 +44,7 @@ class MAMovieDetailsViewController: UIViewController {
     //MARK: UI
     private func setupUI() -> Void {
         movieDetailsTableView.estimatedRowHeight = tableViewEstimatedRowHeight
-        movieDetailsTableView.contentInset = UIEdgeInsets(top: moviePosterImageView.frame.size.height, left: 0, bottom: 0, right: 0)
+        movieDetailsTableView.contentInset = UIEdgeInsets(top: tableTopContentInset, left: 0, bottom: 0, right: 0)
         
         movieDetailsTableView.register(UINib(nibName: CellConstants.movieDetailCellAndIdentifier, bundle: nil), forCellReuseIdentifier: CellConstants.movieDetailCellAndIdentifier)
         
@@ -94,14 +95,14 @@ extension MAMovieDetailsViewController: UITableViewDataSource {
             
             cell.movieNameLabel.text = movieData?.title
             
-            var adultStr = "U"
+            var adultStr = kNonAdultSign
             if (movieData?.isAdult)! {
-                adultStr = "A"
+                adultStr = kAdultSign
             }
-            let formattedReleseString = String(format: "%@ | %@", adultStr, movieData?.releaseDate ?? "Today")
+            let formattedReleseString = String(format: "%@ | %@", adultStr, movieData?.releaseDate ?? kDataUnavailable)
             cell.movieReleaseLabel.text = formattedReleseString
             
-            let formattedVotesString = String(format: "%d votes", movieData?.voteCount ?? 0)
+            let formattedVotesString = String(format: "%d %@", movieData?.voteCount ?? 0, kVotesString)
             cell.movieVotesLabel.text = formattedVotesString
             
             cell.movieOverviewLabel.text = movieData?.overview
