@@ -9,8 +9,8 @@
 import UIKit
 
 extension UIImageView {
-    func download(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
-        contentMode = mode
+    func download(from url: URL) {
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
@@ -24,8 +24,9 @@ extension UIImageView {
         }.resume()
     }
     
-    func download(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFill) {
-        guard let url = URL(string: link) else { return }
-        download(from: url, contentMode: mode)
+    func download(from link: String) {
+        let formattedUrlString = MovieApi.images.imageBaseURL + link
+        guard let url = URL(string: formattedUrlString) else { return }
+        download(from: url)
     }
 }

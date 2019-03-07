@@ -13,3 +13,8 @@ struct CellConstants {
     static let similarMovieCellAndIdentifier = "MASimilarMovieCell"
     static let similarMovieCollectionCellAndIdentifier = "MASimilarMovieCollectionCell"
 }
+
+enum ImageSize: String {
+    case Small = "w185"
+    case Original = "original"
+}

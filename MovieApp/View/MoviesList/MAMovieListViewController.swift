@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import SDWebImage
+import SVProgressHUD
 
 class MAMovieListViewController: UIViewController {
-
+    
     @IBOutlet weak var movieListCollectionView: UICollectionView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
@@ -18,6 +18,8 @@ class MAMovieListViewController: UIViewController {
     fileprivate var refresher: UIRefreshControl!
     fileprivate var currentPage: Int = 1
     fileprivate let networkManager = NetworkManager()
+    
+    fileprivate var movieData: [Movie]? = nil
     
     let columnLayout = MAMovieColumnFlowLayout(
         cellsPerRow: 2,
@@ -90,16 +92,18 @@ class MAMovieListViewController: UIViewController {
     
     //MARK: Network Call
     private func getDataFromServer(_ currentPage: Int) -> Void {
-        
+        SVProgressHUD.show()
         networkManager.getNewMovies(page: currentPage) { movies, error in
             DispatchQueue.main.async {
                 self.stopRefresher()
-                
-               if movies != nil {
-                   self.handleUIForData()
-               } else {
-                   self.handleError(error ?? kDownloadError)
-               }
+                SVProgressHUD.dismiss()
+                if movies != nil {
+                    self.handleUIForData()
+                    self.movieData = movies
+                    self.movieListCollectionView.reloadData()
+                } else {
+                    self.handleError(error ?? kDownloadError)
+                }
             }
         }
     }
@@ -107,14 +111,14 @@ class MAMovieListViewController: UIViewController {
 
 extension MAMovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 60
+        return movieData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MAMovieCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! MAMovieCollectionCell
         
-        cell.photoImageView.backgroundColor = UIColor.orange
-        //cell.photoImageView.download(from: "")
+        guard let movie = movieData?[indexPath.row] else { return cell }
+        cell.photoImageView.download(from: ImageSize.Small.rawValue + movie.posterPath)
         
         return cell
     }
@@ -123,6 +127,7 @@ extension MAMovieListViewController: UICollectionViewDataSource {
 extension MAMovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailViewController = UIStoryboard.loadmovieDetailsViewController()
+        movieDetailViewController.setImageDetailData(self.movieData![indexPath.row])
         self.navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }

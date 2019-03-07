@@ -15,11 +15,9 @@ enum NetworkEnvironment {
 }
 
 public enum MovieApi {
-    case recommended(id:Int)
-    case popular(page:Int)
     case newMovies(page:Int)
-    case video(id:Int)
     case similar(id:Int)
+    case images
 }
 
 extension MovieApi: EndPointType {
@@ -37,18 +35,18 @@ extension MovieApi: EndPointType {
         return url
     }
     
+    var imageBaseURL: String {
+        return "https://image.tmdb.org/t/p/"
+    }
+    
     var path: String {
         switch self {
-        case .recommended(let id):
-            return "\(id)/recommendations"
-        case .popular:
-            return "popular"
         case .newMovies:
             return "now_playing"
-        case .video(let id):
-            return "\(id)/videos"
         case .similar(let id):
             return "\(id)/similar"
+        case .images:
+            return imageBaseURL
         }
     }
     
