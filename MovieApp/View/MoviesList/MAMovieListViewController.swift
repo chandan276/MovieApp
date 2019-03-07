@@ -19,7 +19,8 @@ class MAMovieListViewController: UIViewController {
     fileprivate var currentPage: Int = 1
     fileprivate let networkManager = NetworkManager()
     
-    fileprivate var movieData: [Movie]? = nil
+    fileprivate var movieData: [Movie] = [Movie]()
+    fileprivate var isWating: Bool = false
     
     let columnLayout = MAMovieColumnFlowLayout(
         cellsPerRow: 2,
@@ -99,7 +100,7 @@ class MAMovieListViewController: UIViewController {
                 SVProgressHUD.dismiss()
                 if movies != nil {
                     self.handleUIForData()
-                    self.movieData = movies
+                    self.movieData.append(contentsOf: movies!)
                     self.movieListCollectionView.reloadData()
                 } else {
                     self.handleError(error ?? kDownloadError)
@@ -111,13 +112,13 @@ class MAMovieListViewController: UIViewController {
 
 extension MAMovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieData?.count ?? 0
+        return movieData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MAMovieCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! MAMovieCollectionCell
         
-        guard let movie = movieData?[indexPath.row] else { return cell }
+        let movie = movieData[indexPath.row]
         cell.photoImageView.download(from: ImageSize.Small.rawValue + movie.posterPath)
         
         return cell
@@ -127,8 +128,23 @@ extension MAMovieListViewController: UICollectionViewDataSource {
 extension MAMovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailViewController = UIStoryboard.loadmovieDetailsViewController()
-        movieDetailViewController.setImageDetailData(self.movieData![indexPath.row])
+        movieDetailViewController.setImageDetailData(self.movieData[indexPath.row])
         self.navigationController?.pushViewController(movieDetailViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == self.movieData.count - 2 && !isWating {
+            isWating = true
+            self.currentPage += 1
+            self.doPaging()
+        }
+    }
+    
+    private func doPaging() {
+        // call the API in this block and after getting the response then
+        getDataFromServer(currentPage)
+        self.isWating = false // it’s means paging is done and user can able request another page request by scrolling the collectionView at the bottom.
     }
 }
 

@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6N-O4-O5a">
-                                <rect key="frame" x="45" y="262" width="286" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6N-O4-O5a">
+                                <rect key="frame" x="45" y="262" width="285" height="79"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -68,8 +67,12 @@
                         <constraints>
                             <constraint firstItem="fyg-dk-fVz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6VE-dk-3aK"/>
                             <constraint firstItem="fyg-dk-fVz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8RS-Je-S9U"/>
+                            <constraint firstItem="d6N-O4-O5a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="262" id="Gdw-aP-0hl"/>
+                            <constraint firstItem="d6N-O4-O5a" firstAttribute="centerY" secondItem="fyg-dk-fVz" secondAttribute="centerY" id="RmH-eb-kUP"/>
                             <constraint firstItem="fyg-dk-fVz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Xku-6B-FmQ"/>
                             <constraint firstItem="fyg-dk-fVz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fHW-yh-Rss"/>
+                            <constraint firstItem="d6N-O4-O5a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="qZT-QH-von"/>
+                            <constraint firstItem="d6N-O4-O5a" firstAttribute="centerX" secondItem="fyg-dk-fVz" secondAttribute="centerX" id="zaz-Ar-Zka"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

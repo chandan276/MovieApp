@@ -15,6 +15,7 @@ protocol MASimilarMovieProtocol: class {
 class MASimilarMovieCell: UITableViewCell {
     
     fileprivate let imageBorder: CGFloat = 1.0
+    fileprivate var similarMovieData: [Movie] = [Movie]()
     
     @IBOutlet weak var similarMoviesCollectionView: UICollectionView!
     
@@ -35,11 +36,16 @@ class MASimilarMovieCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+    
+    func setMovieData(_ movieData: [Movie]) -> Void {
+        self.similarMovieData = movieData
+        self.similarMoviesCollectionView.reloadData()
+    }
 }
 
 extension MASimilarMovieCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return similarMovieData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -51,6 +57,11 @@ extension MASimilarMovieCell: UICollectionViewDataSource {
         cell.similarMovieImageView.layer.cornerRadius = cell.similarMovieImageView.frame.size.width / 2;
         cell.similarMovieImageView.layer.borderWidth = imageBorder
         cell.similarMovieImageView.layer.borderColor = UIColor.borderColor.cgColor
+        
+        let movie = similarMovieData[indexPath.row]
+        cell.similarMovieImageView.download(from: ImageSize.Thumb.rawValue + movie.posterPath)
+        
+        cell.similarMovieNameLabel.text = movie.title
         
         return cell
     }

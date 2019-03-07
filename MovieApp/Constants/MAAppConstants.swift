@@ -15,6 +15,7 @@ struct CellConstants {
 }
 
 enum ImageSize: String {
+    case Thumb = "w92"
     case Small = "w185"
     case Original = "original"
 }

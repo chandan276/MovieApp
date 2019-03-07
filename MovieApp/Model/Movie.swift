@@ -63,7 +63,7 @@ extension Movie: Decodable {
         let movieContainer = try decoder.container(keyedBy: MovieCodingKeys.self)
         
         id = try movieContainer.decode(Int.self, forKey: .id)
-        posterPath = try movieContainer.decode(String.self, forKey: .posterPath)
+        posterPath = try movieContainer.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
         title = try movieContainer.decode(String.self, forKey: .title)
         releaseDate = try movieContainer.decode(String.self, forKey: .releaseDate)
         rating = try movieContainer.decode(Double.self, forKey: .rating)

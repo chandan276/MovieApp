@@ -18,7 +18,9 @@ class MAMovieDetailsViewController: UIViewController {
     fileprivate let sectionCount = 2
     fileprivate let rowCountInSection = 1
     
+    fileprivate let networkManager = NetworkManager()
     fileprivate var movieData: Movie? = nil
+    fileprivate var similarMovieData: [Movie] = [Movie]()
 
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieDetailsTableView: UITableView!
@@ -29,6 +31,7 @@ class MAMovieDetailsViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         setupUI()
+        getSimilarMovieData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +58,21 @@ class MAMovieDetailsViewController: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    //MARK: Network
+    fileprivate func getSimilarMovieData() -> Void {
+        networkManager.getSimilarMovies(movieId: movieData?.id ?? 0) { (movies, error) in
+            DispatchQueue.main.async {
+                if movies != nil {
+                    self.similarMovieData.append(contentsOf: movies!)
+                    let sectionToReload = IndexSet(integersIn: 1...1)
+                    self.movieDetailsTableView.reloadSections(sectionToReload, with: .none)
+                } else {
+                    
+                }
+            }
+        }
     }
 }
 
@@ -94,7 +112,9 @@ extension MAMovieDetailsViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellConstants.similarMovieCellAndIdentifier, for: indexPath) as? MASimilarMovieCell else {
                 return UITableViewCell()
             }
+            
             cell.delegate = self
+            cell.setMovieData(similarMovieData)
             
             return cell
         }
@@ -142,6 +162,7 @@ extension MAMovieDetailsViewController: UIScrollViewDelegate {
 extension MAMovieDetailsViewController: MASimilarMovieProtocol {
     func selectedSimilarMovieFor(index selectedIndex: Int) -> Void {
         let movieDetailViewController = UIStoryboard.loadmovieDetailsViewController()
+        movieDetailViewController.setImageDetailData(self.similarMovieData[selectedIndex])
         self.navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }
