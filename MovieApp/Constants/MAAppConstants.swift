@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct CellConstants {
     static let movieDetailCellAndIdentifier = "MAMovieDetailCell"
@@ -19,3 +20,6 @@ enum ImageSize: String {
     case Small = "w185"
     case Original = "original"
 }
+
+let shadowRadius: CGFloat = 3.0
+let shadowOpacity: Float = 1

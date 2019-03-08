@@ -20,9 +20,6 @@ class MAMovieListViewController: UIViewController {
     fileprivate let viewModel = MAMoviesViewModel()
     fileprivate var columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
     
-    fileprivate var shadowRadius: CGFloat = 3.0
-    fileprivate var shadowOpacity: Float = 1
-    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +46,18 @@ class MAMovieListViewController: UIViewController {
         
         //Collectionview Layout
         movieListCollectionView.collectionViewLayout = columnLayout
-        
+        addShadowToCollectionView()
+        addRefreshers()
+    }
+    
+    private func addShadowToCollectionView() {
         movieListCollectionView.layer.shadowColor = UIColor.shadowColor.cgColor
         movieListCollectionView.layer.shadowOffset = CGSize(width: 0, height: 1)
         movieListCollectionView.layer.shadowOpacity = shadowOpacity
         movieListCollectionView.layer.shadowRadius = shadowRadius
-        
-        addRefreshers()
     }
     
-    fileprivate func addRefreshers() -> Void {
+    private func addRefreshers() -> Void {
         self.movieListCollectionView.addPullToRefresh { [weak self] in
             self?.currentPage = 1
             self?.getDataFromServer(self?.currentPage ?? 1)
@@ -70,7 +69,7 @@ class MAMovieListViewController: UIViewController {
         }
     }
     
-    fileprivate func removeRefreshAnimators() -> Void {
+    private func removeRefreshAnimators() -> Void {
         
         guard let refreshView = self.movieListCollectionView.pullToRefreshView else { return }
         guard let infiniteScrollView = self.movieListCollectionView.infiniteScrollingView else { return }
