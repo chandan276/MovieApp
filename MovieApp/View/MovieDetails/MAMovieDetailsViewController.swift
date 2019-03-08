@@ -44,6 +44,7 @@ class MAMovieDetailsViewController: UIViewController {
     //MARK: UI
     private func setupUI() -> Void {
         movieDetailsTableView.estimatedRowHeight = tableViewEstimatedRowHeight
+        
         movieDetailsTableView.contentInset = UIEdgeInsets(top: tableTopContentInset, left: 0, bottom: 0, right: 0)
         
         movieDetailsTableView.register(UINib(nibName: CellConstants.movieDetailCellAndIdentifier, bundle: nil), forCellReuseIdentifier: CellConstants.movieDetailCellAndIdentifier)
@@ -98,6 +99,7 @@ extension MAMovieDetailsViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.movieViewModel = movieViewModel
+            cell.selectionStyle = .none
             
             return cell
             

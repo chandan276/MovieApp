@@ -27,7 +27,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fyg-dk-fVz">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fyg-dk-fVz">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="e2Q-kN-6sH">
@@ -70,8 +70,14 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d6N-O4-O5a" secondAttribute="trailing" constant="16" id="253-dz-2KK"/>
                             <constraint firstItem="d6N-O4-O5a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="HS3-mH-j82"/>
-                            <constraint firstItem="fyg-dk-fVz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IJ3-Af-xEn"/>
-                            <constraint firstItem="fyg-dk-fVz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NN3-oE-G5X"/>
+                            <constraint firstItem="fyg-dk-fVz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IJ3-Af-xEn">
+                                <variation key="heightClass=compact-widthClass=compact" constant="100"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                            </constraint>
+                            <constraint firstItem="fyg-dk-fVz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NN3-oE-G5X">
+                                <variation key="heightClass=compact-widthClass=compact" constant="-100"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="-100"/>
+                            </constraint>
                             <constraint firstItem="fyg-dk-fVz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="RGt-mP-90c"/>
                             <constraint firstItem="d6N-O4-O5a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fSE-9u-JYw"/>
                             <constraint firstItem="fyg-dk-fVz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jiP-Yx-wcO"/>

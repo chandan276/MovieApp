@@ -20,7 +20,7 @@ extension UIColor {
     }
     
     // MARK: Public
-    static let borderColor = rgb(254, 250, 236)
-    static let textColor = UIColor.black
+    static let borderColor = UIColor.red
+    static let shadowColor = UIColor.black
     static let refresherSpinnerColor = UIColor.black
 }

@@ -18,15 +18,23 @@ class MAMovieListViewController: UIViewController {
     
     fileprivate var currentPage: Int = 1
     fileprivate let viewModel = MAMoviesViewModel()
-    fileprivate let columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
+    fileprivate var columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
+    
+    fileprivate var shadowRadius: CGFloat = 3.0
+    fileprivate var shadowOpacity: Float = 1
     
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+            columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 3)
+        }
+        
         setupUI()
         getDataFromServer(currentPage)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +49,11 @@ class MAMovieListViewController: UIViewController {
         
         //Collectionview Layout
         movieListCollectionView.collectionViewLayout = columnLayout
-        movieListCollectionView.contentInsetAdjustmentBehavior = .always
+        
+        movieListCollectionView.layer.shadowColor = UIColor.shadowColor.cgColor
+        movieListCollectionView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        movieListCollectionView.layer.shadowOpacity = shadowOpacity
+        movieListCollectionView.layer.shadowRadius = shadowRadius
         
         addRefreshers()
     }
