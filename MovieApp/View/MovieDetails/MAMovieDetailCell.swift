@@ -20,9 +20,23 @@ class MAMovieDetailCell: UITableViewCell {
         // Initialization code
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+    public var movieViewModel: MATableCellViewModel? {
+        didSet {
+            guard let movieViewModel = movieViewModel else { return }
+            
+            self.movieNameLabel.text = movieViewModel.movieTitle
+            
+            var adultStr = kNonAdultSign
+            if (movieViewModel.movieIsAdult) {
+                adultStr = kAdultSign
+            }
+            let formattedReleseString = String(format: "%@ | %@", adultStr, movieViewModel.movieReleaseDate)
+            self.movieReleaseLabel.text = formattedReleseString
+            
+            let formattedVotesString = String(format: "%d %@", movieViewModel.movieVoteCount, kVotesString)
+            self.movieVotesLabel.text = formattedVotesString
+            
+            self.movieOverviewLabel.text = movieViewModel.movieOverview
+        }
     }
 }

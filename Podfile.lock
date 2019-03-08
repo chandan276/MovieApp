@@ -1,16 +1,20 @@
 PODS:
   - SVProgressHUD (2.2.5)
+  - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - SVProgressHUD
+  - SVPullToRefresh
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - SVProgressHUD
+    - SVPullToRefresh
 
 SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: 8f4a144e00d725869344687f5a1cc1477c381967
+PODFILE CHECKSUM: 67ace1603c9fd6a76aabffd9ab248c6f20a4056f
 
 COCOAPODS: 1.5.3

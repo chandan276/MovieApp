@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import SVPullToRefresh
 
 class MAMovieListViewController: UIViewController {
     
@@ -15,14 +16,9 @@ class MAMovieListViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
-    fileprivate var refresher: UIRefreshControl!
     fileprivate var currentPage: Int = 1
-    fileprivate let networkManager = NetworkManager()
-    
-    fileprivate var movieData: [Movie] = [Movie]()
-    fileprivate var isWating: Bool = false
-    
-    var columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
+    fileprivate let viewModel = MAMoviesViewModel()
+    fileprivate let columnLayout = MAMovieColumnFlowLayout(cellsPerRow: 2)
     
     //MARK: LifeCycle
     override func viewDidLoad() {
@@ -35,29 +31,9 @@ class MAMovieListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.navigationController?.navigationBar.isHidden = false
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        self.movieListCollectionView.collectionViewLayout.prepare()
-        self.movieListCollectionView.collectionViewLayout.invalidateLayout()
-//        self.movieListCollectionView.setNeedsLayout()
-//        self.movieListCollectionView.setNeedsDisplay()
-        self.view.setNeedsDisplay()
-    }
-    
-    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        var numberOfColumns = 2
-        if toInterfaceOrientation == .landscapeLeft || toInterfaceOrientation == .landscapeRight {
-            numberOfColumns = 3
-        }
-        columnLayout = MAMovieColumnFlowLayout(cellsPerRow: numberOfColumns)
-        
-    }
-        
     //MARK: UI
     private func setupUI() -> Void {
         //Add Page title
@@ -67,13 +43,28 @@ class MAMovieListViewController: UIViewController {
         movieListCollectionView.collectionViewLayout = columnLayout
         movieListCollectionView.contentInsetAdjustmentBehavior = .always
         
-        //Add pull to refresh control to CollectionView
-        self.refresher = UIRefreshControl()
-        self.refresher.attributedTitle = NSAttributedString(string: kDataReloadString)
-        self.movieListCollectionView.alwaysBounceVertical = true
-        self.refresher.tintColor = UIColor.refresherSpinnerColor
-        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
-        self.movieListCollectionView.addSubview(refresher)
+        addRefreshers()
+    }
+    
+    fileprivate func addRefreshers() -> Void {
+        self.movieListCollectionView.addPullToRefresh { [weak self] in
+            self?.currentPage = 1
+            self?.getDataFromServer(self?.currentPage ?? 1)
+        }
+        
+        self.movieListCollectionView.addInfiniteScrolling { [weak self] in
+            self?.currentPage += 1
+            self?.getDataFromServer(self?.currentPage ?? 1)
+        }
+    }
+    
+    fileprivate func removeRefreshAnimators() -> Void {
+        
+        guard let refreshView = self.movieListCollectionView.pullToRefreshView else { return }
+        guard let infiniteScrollView = self.movieListCollectionView.infiniteScrollingView else { return }
+        
+        refreshView.stopAnimating()
+        infiniteScrollView.stopAnimating()
     }
     
     private func handleError(_ errorText: String) -> Void {
@@ -90,16 +81,6 @@ class MAMovieListViewController: UIViewController {
         refreshButton.isEnabled = false
     }
     
-    @objc func loadData() {
-        //code to execute during refresher
-        currentPage = 1
-        getDataFromServer(currentPage)
-    }
-    
-    private func stopRefresher() {
-        self.refresher.endRefreshing()
-    }
-    
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
         currentPage = 1
         getDataFromServer(currentPage)
@@ -108,16 +89,15 @@ class MAMovieListViewController: UIViewController {
     //MARK: Network Call
     private func getDataFromServer(_ currentPage: Int) -> Void {
         SVProgressHUD.show()
-        networkManager.getNewMovies(page: currentPage) { movies, error in
+        viewModel.getNowPlayingMovies(page: currentPage) { [weak self] (error) in
             DispatchQueue.main.async {
-                self.stopRefresher()
+                self?.removeRefreshAnimators()
                 SVProgressHUD.dismiss()
-                if movies != nil {
-                    self.handleUIForData()
-                    self.movieData.append(contentsOf: movies!)
-                    self.movieListCollectionView.reloadData()
+                if error == nil {
+                    self?.handleUIForData()
+                    self?.movieListCollectionView.reloadData()
                 } else {
-                    self.handleError(error ?? kDownloadError)
+                    self?.handleError(error ?? kDownloadError)
                 }
             }
         }
@@ -126,14 +106,14 @@ class MAMovieListViewController: UIViewController {
 
 extension MAMovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movieData.count
+        return viewModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MAMovieCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! MAMovieCollectionCell
         
-        let movie = movieData[indexPath.row]
-        cell.photoImageView.download(from: ImageSize.Small.rawValue + movie.posterPath)
+        let cellViewModel = viewModel.cellViewModel(index: indexPath.row)
+        cell.viewModel = cellViewModel
         
         return cell
     }
@@ -141,24 +121,12 @@ extension MAMovieListViewController: UICollectionViewDataSource {
 
 extension MAMovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let data = viewModel.cellViewModel(index: indexPath.row) else {
+            return
+        }
+        
         let movieDetailViewController = UIStoryboard.loadmovieDetailsViewController()
-        movieDetailViewController.setImageDetailData(self.movieData[indexPath.row])
+        movieDetailViewController.setDetailData(data)
         self.navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        if indexPath.row == self.movieData.count - 2 && !isWating {
-            isWating = true
-            self.currentPage += 1
-            self.doPaging()
-        }
-    }
-    
-    private func doPaging() {
-        // call the API in this block and after getting the response then
-        getDataFromServer(currentPage)
-        self.isWating = false // it’s means paging is done and user can able request another page request by scrolling the collectionView at the bottom.
-    }
 }
-

@@ -7,6 +7,7 @@ target 'MovieApp' do
 
   # Pods for MovieApp
   pod 'SVProgressHUD'
+  pod 'SVPullToRefresh'
 
   target 'MovieAppTests' do
     inherit! :search_paths

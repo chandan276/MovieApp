@@ -16,4 +16,11 @@ class MAMovieCollectionCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    public var viewModel: MATableCellViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            self.photoImageView.download(from: ImageSize.Small.rawValue + viewModel.moviePosterPath)
+        }
+    }
 }

@@ -39,6 +39,7 @@
 		B5992D6E222D60C7003F8534 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5992D70222D60C7003F8534 /* InfoPlist.strings */; };
 		B5992D74222D6594003F8534 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5992D76222D6594003F8534 /* Localizable.strings */; };
 		B599DE022231672A00C483DB /* MAMoviesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599DE012231672A00C483DB /* MAMoviesViewModel.swift */; };
+		B599DE0422316C0500C483DB /* MATableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599DE0322316C0500C483DB /* MATableCellViewModel.swift */; };
 		B5E26A84222EC549001A1616 /* UIStoryboard+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E26A83222EC549001A1616 /* UIStoryboard+Loader.swift */; };
 		B5F7437C222D6EBA0074BC21 /* MAMovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */; };
 		B5F7437F222D6F9F0074BC21 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */; };
@@ -95,6 +96,7 @@
 		B5992D6F222D60C7003F8534 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B5992D75222D6594003F8534 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B599DE012231672A00C483DB /* MAMoviesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAMoviesViewModel.swift; sourceTree = "<group>"; };
+		B599DE0322316C0500C483DB /* MATableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MATableCellViewModel.swift; sourceTree = "<group>"; };
 		B5E26A83222EC549001A1616 /* UIStoryboard+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Loader.swift"; sourceTree = "<group>"; };
 		B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAMovieListViewController.swift; sourceTree = "<group>"; };
 		B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
@@ -208,8 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				B5F74375222D6BEC0074BC21 /* Model */,
-				B599DE002231627200C483DB /* ViewModel */,
 				B5F74377222D6C100074BC21 /* View */,
+				B599DE002231627200C483DB /* ViewModel */,
 				B5992D67222D5F7D003F8534 /* Constants */,
 				B5F7437D222D6F1D0074BC21 /* Extensions */,
 				B5F74382222D77100074BC21 /* Utils */,
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				B599DE012231672A00C483DB /* MAMoviesViewModel.swift */,
+				B599DE0322316C0500C483DB /* MATableCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -434,12 +437,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SVPullToRefresh/SVPullToRefresh.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVPullToRefresh.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -521,6 +526,7 @@
 				B53F8C71222E5F4A0055BDEE /* MAMovieCollectionCell.swift in Sources */,
 				B5992D6B222D5FD9003F8534 /* MAAppConstants.swift in Sources */,
 				B5399065222F9785004F5E18 /* UIImageView+downloader.swift in Sources */,
+				B599DE0422316C0500C483DB /* MATableCellViewModel.swift in Sources */,
 				B5F74384222D77340074BC21 /* MAAppUtils.swift in Sources */,
 				B53F8C59222E38310055BDEE /* MAMovieEndPoint.swift in Sources */,
 			);

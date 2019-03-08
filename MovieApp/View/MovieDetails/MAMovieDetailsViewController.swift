@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MAMovieDetailsViewController: UIViewController {
     
@@ -19,9 +20,8 @@ class MAMovieDetailsViewController: UIViewController {
     fileprivate let sectionCount = 2
     fileprivate let rowCountInSection = 1
     
-    fileprivate let networkManager = NetworkManager()
-    fileprivate var movieData: Movie? = nil
-    fileprivate var similarMovieData: [Movie] = [Movie]()
+    fileprivate var movieDataViewModel: MATableCellViewModel? = nil
+    fileprivate let viewModel = MAMoviesViewModel()
 
     @IBOutlet weak var moviePosterImageView: UIImageView!
     @IBOutlet weak var movieDetailsTableView: UITableView!
@@ -50,11 +50,11 @@ class MAMovieDetailsViewController: UIViewController {
         
         movieDetailsTableView.register(UINib(nibName: CellConstants.similarMovieCellAndIdentifier, bundle: nil), forCellReuseIdentifier: CellConstants.similarMovieCellAndIdentifier)
         
-        moviePosterImageView.download(from: ImageSize.Original.rawValue + (self.movieData?.posterPath)!)
+        moviePosterImageView.download(from: ImageSize.Original.rawValue + (self.movieDataViewModel?.moviePosterPath)!)
     }
     
-    func setImageDetailData(_ data:Movie) -> Void {
-        self.movieData = data
+    func setDetailData(_ data: MATableCellViewModel) -> Void {
+        self.movieDataViewModel = data
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -63,14 +63,15 @@ class MAMovieDetailsViewController: UIViewController {
     
     //MARK: Network
     fileprivate func getSimilarMovieData() -> Void {
-        networkManager.getSimilarMovies(movieId: movieData?.id ?? 0) { (movies, error) in
+        viewModel.getSimilarMovies(movieId: movieDataViewModel?.movieId ?? 0) { [weak self] (error) in
+            SVProgressHUD.show()
             DispatchQueue.main.async {
-                if movies != nil {
-                    self.similarMovieData.append(contentsOf: movies!)
-                    let sectionToReload = IndexSet(integersIn: 1...1)
-                    self.movieDetailsTableView.reloadSections(sectionToReload, with: .none)
+                SVProgressHUD.dismiss()
+                let sectionInAction = IndexSet(integersIn: 1...1)
+                if error == nil {
+                    self?.movieDetailsTableView.reloadSections(sectionInAction, with: .automatic)
                 } else {
-                    
+                    self?.movieDetailsTableView.deleteSections(sectionInAction, with: .automatic)
                 }
             }
         }
@@ -93,23 +94,10 @@ extension MAMovieDetailsViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             
-            guard let movie = movieData else {
+            guard let movieViewModel = movieDataViewModel else {
                 return UITableViewCell()
             }
-            
-            cell.movieNameLabel.text = movie.title
-            
-            var adultStr = kNonAdultSign
-            if (movie.isAdult) {
-                adultStr = kAdultSign
-            }
-            let formattedReleseString = String(format: "%@ | %@", adultStr, movie.releaseDate)
-            cell.movieReleaseLabel.text = formattedReleseString
-            
-            let formattedVotesString = String(format: "%d %@", movie.voteCount, kVotesString)
-            cell.movieVotesLabel.text = formattedVotesString
-            
-            cell.movieOverviewLabel.text = movie.overview
+            cell.movieViewModel = movieViewModel
             
             return cell
             
@@ -119,7 +107,7 @@ extension MAMovieDetailsViewController: UITableViewDataSource {
             }
             
             cell.delegate = self
-            cell.setMovieData(similarMovieData)
+            cell.setMovieData(viewModel)
             
             return cell
         }
@@ -166,8 +154,12 @@ extension MAMovieDetailsViewController: UIScrollViewDelegate {
 
 extension MAMovieDetailsViewController: MASimilarMovieProtocol {
     func selectedSimilarMovieFor(index selectedIndex: Int) -> Void {
+        guard let data = viewModel.cellViewModel(index: selectedIndex) else {
+            return
+        }
+        
         let movieDetailViewController = UIStoryboard.loadmovieDetailsViewController()
-        movieDetailViewController.setImageDetailData(self.similarMovieData[selectedIndex])
+        movieDetailViewController.setDetailData(data)
         self.navigationController?.pushViewController(movieDetailViewController, animated: true)
     }
 }

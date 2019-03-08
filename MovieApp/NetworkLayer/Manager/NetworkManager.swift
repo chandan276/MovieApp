@@ -28,7 +28,7 @@ struct NetworkManager {
     static let MovieAPIKey = "fb971a3a96deb1ed6ae0c663a39df1ad"
     let router = Router<MovieApi>()
     
-    func getNewMovies(page: Int, completion: @escaping (_ movie: [Movie]?,_ error: String?)->()){
+    func getNewMovies(page: Int, completion: @escaping (_ movie: MovieApiResponse?,_ error: String?)->()){
         router.request(.newMovies(page: page)) { data, response, error in
             
             if error != nil {
@@ -48,7 +48,7 @@ struct NetworkManager {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
                         let apiResponse = try JSONDecoder().decode(MovieApiResponse.self, from: responseData)
-                        completion(apiResponse.movies,nil)
+                        completion(apiResponse,nil)
                     }catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
@@ -60,7 +60,7 @@ struct NetworkManager {
         }
     }
     
-    func getSimilarMovies(movieId: Int, completion: @escaping (_ movie: [Movie]?,_ error: String?)->()){
+    func getSimilarMovies(movieId: Int, completion: @escaping (_ movie: MovieApiResponse?,_ error: String?)->()){
         router.request(.similar(id: movieId)) { data, response, error in
             
             if error != nil {
@@ -80,7 +80,7 @@ struct NetworkManager {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
                         let apiResponse = try JSONDecoder().decode(MovieApiResponse.self, from: responseData)
-                        completion(apiResponse.movies,nil)
+                        completion(apiResponse,nil)
                     }catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
