@@ -22,9 +22,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKk-9A-1jt">
                         <rect key="frame" x="0.0" y="0.0" width="99" height="140"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2R-g9-tyK">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="P2R-g9-tyK">
                                 <rect key="frame" x="10" y="8" width="80" height="80"/>
-                                <color key="backgroundColor" red="0.96470588239999999" green="0.61568627450000002" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="CFj-JT-N9i"/>
                                     <constraint firstAttribute="height" constant="80" id="G4b-l9-AgV"/>
@@ -70,4 +69,7 @@
             <point key="canvasLocation" x="-82.400000000000006" y="36.881559220389811"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="image_placeholder" width="68" height="68"/>
+    </resources>
 </document>
