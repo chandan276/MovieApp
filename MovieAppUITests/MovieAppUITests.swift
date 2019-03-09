@@ -9,6 +9,7 @@
 import XCTest
 
 class MovieAppUITests: XCTestCase {
+    var app: XCUIApplication!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -17,7 +18,7 @@ class MovieAppUITests: XCTestCase {
         continueAfterFailure = false
 
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+        app = XCUIApplication()
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -26,8 +27,44 @@ class MovieAppUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testIsMovieListAvailable() {
+        app.launch()
+        sleep(4)
+        let collectionCell = app.collectionViews.cells.element(boundBy: 0)
+        XCTAssertEqual(collectionCell.visible(), true)
+    }
+    
+    func testErrorDisplayedForMovie() {
+        app.launch()
+        sleep(4)
+        let trackErrorLabel = app.staticTexts["Label"]
+        XCTAssertEqual(trackErrorLabel.exists, false)
+    }
+    
+    func testMovieNavigationToDetailScreen() {
+        app.launch()
+        sleep(4)
+        app.collectionViews.cells.element(boundBy: 0).tap()
+    }
+    
+    func testMovieListScroll() {
+        app.launch()
+        sleep(4)
+        let collectionView = app.collectionViews.element(boundBy: 0)
+        let lastCell = collectionView.cells.element(boundBy: collectionView.cells.count - 1)
+        collectionView.scrollToElement(element: lastCell)
+    }
+}
+
+extension XCUIElement {
+    func scrollToElement(element: XCUIElement) {
+        while !element.visible() {
+            swipeUp()
+        }
+    }
+    
+    func visible() -> Bool {
+        guard self.exists && !self.frame.isEmpty else { return false }
+        return XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
     }
 }

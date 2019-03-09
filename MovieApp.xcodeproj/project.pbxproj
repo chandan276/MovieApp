@@ -46,6 +46,7 @@
 		B5F7437C222D6EBA0074BC21 /* MAMovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */; };
 		B5F7437F222D6F9F0074BC21 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */; };
 		B5F74381222D70E70074BC21 /* MAMovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F74380222D70E70074BC21 /* MAMovieDetailsViewController.swift */; };
+		B5FA80A12233836800CDD3F8 /* MovieDetailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FA80A02233836800CDD3F8 /* MovieDetailUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		B5F7437B222D6EBA0074BC21 /* MAMovieListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MAMovieListViewController.swift; sourceTree = "<group>"; };
 		B5F7437E222D6F9F0074BC21 /* UIColor+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		B5F74380222D70E70074BC21 /* MAMovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAMovieDetailsViewController.swift; sourceTree = "<group>"; };
+		B5FA80A02233836800CDD3F8 /* MovieDetailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailUITests.swift; sourceTree = "<group>"; };
 		D1AB92B640CFA0ABA225E7DF /* Pods-MovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieApp/Pods-MovieApp.release.xcconfig"; sourceTree = "<group>"; };
 		EC85B742004FB9471B5F1BC9 /* Pods-MovieAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieAppTests/Pods-MovieAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				B5C3319222325AF600B80463 /* MovieAppUITests.swift */,
+				B5FA80A02233836800CDD3F8 /* MovieDetailUITests.swift */,
 				B5C3319422325AF600B80463 /* Info.plist */,
 			);
 			path = MovieAppUITests;
@@ -596,6 +599,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5C3319322325AF600B80463 /* MovieAppUITests.swift in Sources */,
+				B5FA80A12233836800CDD3F8 /* MovieDetailUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
