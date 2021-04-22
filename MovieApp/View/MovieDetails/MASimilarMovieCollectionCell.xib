@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,14 +27,14 @@
                                     <constraint firstAttribute="height" constant="80" id="G4b-l9-AgV"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fR-4Q-I6D">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="1fR-4Q-I6D">
                                 <rect key="frame" x="10" y="95" width="80" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Uuv-lC-BSw"/>
                                     <constraint firstAttribute="height" constant="37" id="fc3-cA-oyK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -54,13 +52,13 @@
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="83G-G9-M37"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="SKk-9A-1jt" secondAttribute="trailing" id="LfG-t4-z0m"/>
                 <constraint firstAttribute="bottom" secondItem="SKk-9A-1jt" secondAttribute="bottom" id="t4I-Xi-kT1"/>
                 <constraint firstItem="SKk-9A-1jt" firstAttribute="top" secondItem="ees-qi-Sc7" secondAttribute="top" id="wmL-h1-Tmn"/>
                 <constraint firstItem="SKk-9A-1jt" firstAttribute="leading" secondItem="ees-qi-Sc7" secondAttribute="leading" id="z0Z-RI-PN6"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="83G-G9-M37"/>
             <size key="customSize" width="99" height="140"/>
             <connections>
                 <outlet property="similarMovieImageView" destination="P2R-g9-tyK" id="lIZ-kW-o2t"/>

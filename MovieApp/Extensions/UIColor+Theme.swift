@@ -2,8 +2,8 @@
 //  UIColor+Theme.swift
 //  MovieApp
 //
-//  Created by Chandan Singh on 04/03/19.
-//  Copyright © 2019 Mindtree. All rights reserved.
+//  Created by Chandan Singh on 21/04/21.
+//  Copyright © 2021 Personal. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  MAMovieDetailsViewController.swift
 //  MovieApp
 //
-//  Created by Chandan Singh on 04/03/19.
-//  Copyright © 2019 Mindtree. All rights reserved.
+//  Created by Chandan Singh on 21/04/21.
+//  Copyright © 2021 Personal. All rights reserved.
 //
 
 import UIKit
@@ -136,6 +136,7 @@ extension MAMovieDetailsViewController: UITableViewDelegate {
             let headerLabel = UILabel(frame: CGRect(x: 15, y: 0, width: self.view.frame.size.width, height: 20))
             headerLabel.font = UIFont.boldSystemFont(ofSize: 17.0)
             headerLabel.text = kSimilarMovieHeaderString
+            headerLabel.textColor = .black
             
             let headerView = UILabel()
             headerView.addSubview(headerLabel)
